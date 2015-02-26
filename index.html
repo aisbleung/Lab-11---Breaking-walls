@@ -1,0 +1,77 @@
+<script src="processing-1.4.1.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+
+int greenBallX = 50;
+int greenBallY = 50;
+int greenBallXSpeed = 5;
+int greenBallYSpeed = 7;
+int radius = 50;
+boolean greenBallRight = true;
+boolean greenBallUp = true;
+
+int wallCounter = 7;
+
+void setup()
+{
+
+	size(750, 500);
+
+}  
+
+
+void draw()
+{
+
+	background(0,0,0);
+	
+	if (wallCounter > 0)
+	{
+		stroke(255,255,255);
+		strokeWeight(3);
+		line(500,0,500,500);
+	}
+
+	fill(0,255,0);
+	stroke(0,0,0);
+	ellipse(greenBallX,greenBallY,radius,radius);
+	if (greenBallRight == true)
+	{
+		greenBallX = greenBallX + greenBallXSpeed;
+	}
+	else
+	{
+		greenBallX = greenBallX - greenBallXSpeed;
+	}
+	if (greenBallUp == true)
+	{
+		greenBallY = greenBallY + greenBallYSpeed;
+	}
+	else
+	{
+		greenBallY = greenBallY - greenBallYSpeed;
+	}
+	if (greenBallX >= 500-radius/2)
+	{
+		greenBallRight = false;
+		greenBallXSpeed = random(5,10);
+	}
+	if (greenBallX <= 0+radius/2)
+	{
+		greenBallRight = true;
+		greenBallXSpeed = random(6,10);
+	}
+	if (greenBallY >= 500-radius/2)
+	{
+		greenBallUp = false;
+		greenBallYSpeed = random(5,10);
+	}
+	if (greenBallY <= 0+radius/2)
+	{
+		greenBallUp = true;
+		greenBallYSpeed = random(4,10);
+	}
+	
+} // draw
+
+</script>
+<canvas id="mycanvas"></canvas>
